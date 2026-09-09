@@ -1,6 +1,8 @@
+import { formatDuration, formatPrice } from "@/lib/format";
 import type { Locale } from "@/lib/i18n";
 import type {
   ContactKind,
+  ServicePackage,
   StudioContact,
   StudioSettings,
 } from "@/lib/types";
@@ -79,10 +81,44 @@ export function bookingContact(contacts: StudioContact[]) {
   );
 }
 
+export function bookingMessage(
+  settings: StudioSettings,
+  locale: Locale,
+  pack?: Pick<ServicePackage, "name" | "name_es" | "price" | "duration_minutes"> | null,
+) {
+  const intro = (
+    locale === "es"
+      ? settings.booking_message_es
+      : settings.booking_message_en
+  ).trim();
+
+  if (!pack) {
+    return intro;
+  }
+
+  const name = locale === "es" && pack.name_es ? pack.name_es : pack.name;
+  const duration = formatDuration(pack.duration_minutes);
+  const details =
+    locale === "es"
+      ? [
+          `Servicio: ${name}`,
+          `Precio: ${formatPrice(pack.price, locale)}`,
+          duration ? `Duración: ${duration}` : null,
+        ]
+      : [
+          `Service: ${name}`,
+          `Price: ${formatPrice(pack.price, locale)}`,
+          duration ? `Duration: ${duration}` : null,
+        ];
+
+  return [intro, "", ...details.filter(Boolean)].join("\n");
+}
+
 export function bookingUrl(
   contacts: StudioContact[],
   settings: StudioSettings,
   locale: Locale,
+  pack?: Pick<ServicePackage, "name" | "name_es" | "price" | "duration_minutes"> | null,
 ) {
   const whatsapp = bookingContact(contacts);
 
@@ -96,13 +132,9 @@ export function bookingUrl(
     return null;
   }
 
-  const message =
-    locale === "es"
-      ? settings.booking_message_es
-      : settings.booking_message_en;
-
-  const params = message.trim()
-    ? `?text=${encodeURIComponent(message.trim())}`
+  const message = bookingMessage(settings, locale, pack);
+  const params = message
+    ? `?text=${encodeURIComponent(message)}`
     : "";
 
   return `https://wa.me/${phone}${params}`;

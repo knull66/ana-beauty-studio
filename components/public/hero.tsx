@@ -5,19 +5,11 @@ import { useCallback, useEffect, useState } from "react";
 import { BookLink } from "@/components/public/book-link";
 import { useLanguage } from "@/components/language-provider";
 import { localized } from "@/lib/examples";
-import type { PortfolioImage, StudioContact, StudioSettings } from "@/lib/types";
+import type { PortfolioImage } from "@/lib/types";
 
 const SLIDE_MS = 5500;
 
-export function Hero({
-  images,
-  contacts,
-  settings,
-}: {
-  images: PortfolioImage[];
-  contacts: StudioContact[];
-  settings: StudioSettings;
-}) {
+export function Hero({ images }: { images: PortfolioImage[] }) {
   const { locale, dictionary } = useLanguage();
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -85,8 +77,6 @@ export function Hero({
         </p>
         <div className="mt-12 flex flex-wrap items-center justify-center gap-8">
           <BookLink
-            contacts={contacts}
-            settings={settings}
             bordered
             className="text-[11px] uppercase tracking-[0.32em]"
           />

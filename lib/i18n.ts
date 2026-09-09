@@ -44,6 +44,19 @@ export const dictionaries = {
       title: "Collections",
       emptyTitle: "No collections yet",
       emptyBody: "Available services will appear here once they are published.",
+      pick: "Select a collection, then book.",
+      selected: "Selected",
+      ready: "Ready to book",
+    },
+    booking: {
+      kicker: "Reservation",
+      title: "Book a visit",
+      choose: "Choose the collection you want, then continue on WhatsApp.",
+      continue: "Continue on WhatsApp",
+      close: "Close",
+      empty: "No collections are available yet.",
+      unavailable:
+        "WhatsApp booking will appear once the studio adds a number.",
     },
     contact: {
       kicker: "Studio",
@@ -87,6 +100,8 @@ export const dictionaries = {
       adminCta: "Open studio dashboard",
       home: "Back to site",
       signOut: "Sign out",
+      bookTitle: "Book a visit",
+      bookBody: "Select a collection and reserve it on WhatsApp.",
     },
     admin: {
       overview: "Overview",
@@ -203,6 +218,19 @@ export const dictionaries = {
       emptyTitle: "Sin colecciones",
       emptyBody:
         "Los servicios disponibles se mostrarán aquí cuando se publiquen.",
+      pick: "Elige una colección y reserva.",
+      selected: "Seleccionada",
+      ready: "Lista para reservar",
+    },
+    booking: {
+      kicker: "Reserva",
+      title: "Reservar una cita",
+      choose: "Elige la colección que quieres y continúa por WhatsApp.",
+      continue: "Continuar en WhatsApp",
+      close: "Cerrar",
+      empty: "Aún no hay colecciones disponibles.",
+      unavailable:
+        "La reserva por WhatsApp aparecerá cuando el estudio añada un número.",
     },
     contact: {
       kicker: "Estudio",
@@ -246,6 +274,8 @@ export const dictionaries = {
       adminCta: "Abrir panel del estudio",
       home: "Volver al sitio",
       signOut: "Salir",
+      bookTitle: "Reservar una cita",
+      bookBody: "Elige una colección y resérvala por WhatsApp.",
     },
     admin: {
       overview: "Resumen",

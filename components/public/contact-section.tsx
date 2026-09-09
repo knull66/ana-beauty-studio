@@ -3,14 +3,12 @@
 import { BookLink } from "@/components/public/book-link";
 import { useLanguage } from "@/components/language-provider";
 import { contactHref, contactLabel, visibleContacts } from "@/lib/contacts";
-import type { StudioContact, StudioSettings } from "@/lib/types";
+import type { StudioContact } from "@/lib/types";
 
 export function ContactSection({
   contacts,
-  settings,
 }: {
   contacts: StudioContact[];
-  settings: StudioSettings;
 }) {
   const { dictionary } = useLanguage();
   const items = visibleContacts(contacts);
@@ -57,8 +55,6 @@ export function ContactSection({
       </ul>
       <div className="mt-10">
         <BookLink
-          contacts={contacts}
-          settings={settings}
           bordered
           className="inline-flex text-[11px] uppercase tracking-[0.28em]"
         />

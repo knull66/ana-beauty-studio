@@ -6,18 +6,16 @@ import { LanguageToggle } from "@/components/language-toggle";
 import { useLanguage } from "@/components/language-provider";
 import { Wordmark } from "@/components/wordmark";
 import { visibleContacts } from "@/lib/contacts";
-import type { StudioContact, StudioSettings } from "@/lib/types";
+import type { StudioContact } from "@/lib/types";
 
 export function SiteHeader({
   signedIn,
   isAdmin,
   contacts,
-  settings,
 }: {
   signedIn: boolean;
   isAdmin: boolean;
   contacts: StudioContact[];
-  settings: StudioSettings;
 }) {
   const { dictionary } = useLanguage();
   const hasContact = visibleContacts(contacts).length > 0;
@@ -41,11 +39,7 @@ export function SiteHeader({
             </a>
           ) : null}
           <LanguageToggle />
-          <BookLink
-            contacts={contacts}
-            settings={settings}
-            bordered
-          />
+          <BookLink bordered />
           {signedIn ? (
             <Link
               href={isAdmin ? "/admin" : "/account"}

@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { isSupabaseConfigured } from "@/lib/env";
 import { EXAMPLE_PACKAGES } from "@/lib/examples";
 import { toErrorMessage } from "@/lib/format";
@@ -57,6 +58,6 @@ export async function getServicePackages(options?: {
   }
 }
 
-export async function getPublicPackages() {
+export const getPublicPackages = cache(async function getPublicPackages() {
   return getServicePackages({ availableOnly: true });
-}
+});

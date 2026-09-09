@@ -1,34 +1,30 @@
 "use client";
 
+import { useBooking } from "@/components/public/booking-provider";
 import { useLanguage } from "@/components/language-provider";
-import { bookingUrl } from "@/lib/contacts";
-import type { StudioContact, StudioSettings } from "@/lib/types";
 
 type BookLinkProps = {
-  contacts: StudioContact[];
-  settings: StudioSettings;
   className?: string;
   bordered?: boolean;
+  packageId?: string;
 };
 
 export function BookLink({
-  contacts,
-  settings,
   className = "",
   bordered = false,
+  packageId,
 }: BookLinkProps) {
-  const { locale, dictionary } = useLanguage();
-  const href = bookingUrl(contacts, settings, locale);
+  const { dictionary } = useLanguage();
+  const booking = useBooking();
 
-  if (!href) {
+  if (!booking) {
     return null;
   }
 
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+    <button
+      type="button"
+      onClick={() => booking.open(packageId)}
       className={
         bordered
           ? `border border-gold/35 px-3 py-1.5 text-gold-soft transition-colors hover:border-gold ${className}`
@@ -36,6 +32,6 @@ export function BookLink({
       }
     >
       {dictionary.nav.book}
-    </a>
+    </button>
   );
 }

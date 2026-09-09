@@ -17,17 +17,10 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero
-        images={portfolio.data}
-        contacts={profile.contacts}
-        settings={profile.settings}
-      />
+      <Hero images={portfolio.data} />
       <Gallery images={portfolio.data} error={null} />
       <PackagesSection packages={packages.data} error={null} />
-      <ContactSection
-        contacts={profile.contacts}
-        settings={profile.settings}
-      />
+      <ContactSection contacts={profile.contacts} />
     </>
   );
 }
