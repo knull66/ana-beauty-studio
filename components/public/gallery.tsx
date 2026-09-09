@@ -53,12 +53,12 @@ export function Gallery({
   const current = active !== null ? images[active] : null;
 
   return (
-    <section id="portafolio" className="mx-auto max-w-6xl px-6 py-24 md:px-10">
-      <header className="mb-14">
+    <section id="portafolio" className="mx-auto max-w-5xl px-6 py-16 md:px-10">
+      <header className="mb-8">
         <p className="text-[11px] uppercase tracking-[0.42em] text-gold">
           {dictionary.gallery.kicker}
         </p>
-        <h2 className="mt-3 font-serif text-4xl text-foreground md:text-5xl">
+        <h2 className="mt-2 font-serif text-3xl text-foreground md:text-4xl">
           {dictionary.gallery.title}
         </h2>
       </header>
@@ -71,7 +71,7 @@ export function Gallery({
           description={dictionary.gallery.emptyBody}
         />
       ) : (
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+        <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:gap-3">
           {images.map((image, index) => {
             const title = localized(locale, image.title, image.title_es);
             const category = localized(locale, image.category, image.category_es);
@@ -83,27 +83,23 @@ export function Gallery({
                 key={image.id}
                 type="button"
                 onClick={() => setActive(index)}
-                className={`group relative block w-full overflow-hidden bg-surface ${
-                  index === 0
-                    ? "aspect-[16/10] md:col-span-2"
-                    : "aspect-[3/4]"
-                }`}
+                className="group relative block aspect-[5/6] w-full overflow-hidden bg-surface"
                 aria-label={alt || dictionary.gallery.viewImage}
               >
                 <Image
                   src={image.public_url}
                   alt={alt || "Ana Beauty Studio"}
                   fill
-                  sizes={index === 0 ? "100vw" : "(min-width: 768px) 50vw, 100vw"}
+                  sizes="(min-width: 640px) 33vw, 50vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
-                <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                <span className="absolute bottom-5 left-5 translate-y-2 text-left opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                  <span className="block text-[10px] uppercase tracking-[0.32em] text-gold">
+                <span className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <span className="absolute bottom-3 left-3 translate-y-1 text-left opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                  <span className="block text-[9px] uppercase tracking-[0.28em] text-gold">
                     {category}
                   </span>
                   {title ? (
-                    <span className="mt-2 block font-serif text-2xl text-gold-soft">
+                    <span className="mt-1 block font-serif text-base text-gold-soft">
                       {title}
                     </span>
                   ) : null}
