@@ -14,6 +14,7 @@ export function AdminNav() {
     { href: "/admin", label: dictionary.admin.overview },
     { href: "/admin/portfolio", label: dictionary.admin.portfolio },
     { href: "/admin/packages", label: dictionary.admin.packages },
+    { href: "/admin/contacts", label: dictionary.admin.contacts },
   ];
 
   return (

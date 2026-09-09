@@ -65,6 +65,9 @@ export default async function AdminHomePage() {
         <Link href="/admin/packages" className="text-gold-soft hover:text-gold">
           Manage collections
         </Link>
+        <Link href="/admin/contacts" className="text-gold-soft hover:text-gold">
+          Manage contact
+        </Link>
       </div>
     </section>
   );

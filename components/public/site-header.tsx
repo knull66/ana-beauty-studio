@@ -1,18 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import { BookLink } from "@/components/public/book-link";
 import { LanguageToggle } from "@/components/language-toggle";
 import { useLanguage } from "@/components/language-provider";
 import { Wordmark } from "@/components/wordmark";
+import { visibleContacts } from "@/lib/contacts";
+import type { StudioContact, StudioSettings } from "@/lib/types";
 
 export function SiteHeader({
   signedIn,
   isAdmin,
+  contacts,
+  settings,
 }: {
   signedIn: boolean;
   isAdmin: boolean;
+  contacts: StudioContact[];
+  settings: StudioSettings;
 }) {
   const { dictionary } = useLanguage();
+  const hasContact = visibleContacts(contacts).length > 0;
 
   return (
     <header className="absolute inset-x-0 top-0 z-20">
@@ -27,7 +35,17 @@ export function SiteHeader({
           <a href="#servicios" className="transition-colors hover:text-gold-soft">
             {dictionary.nav.services}
           </a>
+          {hasContact ? (
+            <a href="#contacto" className="transition-colors hover:text-gold-soft">
+              {dictionary.nav.contact}
+            </a>
+          ) : null}
           <LanguageToggle />
+          <BookLink
+            contacts={contacts}
+            settings={settings}
+            bordered
+          />
           {signedIn ? (
             <Link
               href={isAdmin ? "/admin" : "/account"}
@@ -42,7 +60,7 @@ export function SiteHeader({
               </Link>
               <Link
                 href="/register"
-                className="border border-gold/35 px-3 py-1.5 text-gold-soft transition-colors hover:border-gold"
+                className="transition-colors hover:text-gold-soft"
               >
                 {dictionary.nav.register}
               </Link>

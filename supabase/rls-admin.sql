@@ -70,3 +70,31 @@ create policy "Admins can update portfolio files"
 create policy "Admins can delete portfolio files"
   on storage.objects for delete to authenticated
   using (bucket_id = 'portfolio' and public.is_studio_admin());
+
+drop policy if exists "Admins can insert studio contacts" on public.studio_contacts;
+drop policy if exists "Admins can update studio contacts" on public.studio_contacts;
+drop policy if exists "Admins can delete studio contacts" on public.studio_contacts;
+drop policy if exists "Admins can insert studio settings" on public.studio_settings;
+drop policy if exists "Admins can update studio settings" on public.studio_settings;
+
+create policy "Admins can insert studio contacts"
+  on public.studio_contacts for insert to authenticated
+  with check (public.is_studio_admin());
+
+create policy "Admins can update studio contacts"
+  on public.studio_contacts for update to authenticated
+  using (public.is_studio_admin())
+  with check (public.is_studio_admin());
+
+create policy "Admins can delete studio contacts"
+  on public.studio_contacts for delete to authenticated
+  using (public.is_studio_admin());
+
+create policy "Admins can insert studio settings"
+  on public.studio_settings for insert to authenticated
+  with check (public.is_studio_admin());
+
+create policy "Admins can update studio settings"
+  on public.studio_settings for update to authenticated
+  using (public.is_studio_admin())
+  with check (public.is_studio_admin());

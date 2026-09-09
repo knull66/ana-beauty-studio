@@ -2,13 +2,22 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
+import { BookLink } from "@/components/public/book-link";
 import { useLanguage } from "@/components/language-provider";
 import { localized } from "@/lib/examples";
-import type { PortfolioImage } from "@/lib/types";
+import type { PortfolioImage, StudioContact, StudioSettings } from "@/lib/types";
 
 const SLIDE_MS = 5500;
 
-export function Hero({ images }: { images: PortfolioImage[] }) {
+export function Hero({
+  images,
+  contacts,
+  settings,
+}: {
+  images: PortfolioImage[];
+  contacts: StudioContact[];
+  settings: StudioSettings;
+}) {
   const { locale, dictionary } = useLanguage();
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -74,13 +83,21 @@ export function Hero({ images }: { images: PortfolioImage[] }) {
         <p className="mt-8 max-w-md text-sm leading-7 text-muted">
           {dictionary.hero.body}
         </p>
-        <a
-          href="#portafolio"
-          className="mt-12 inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.32em] text-gold-soft transition-colors hover:text-gold"
-        >
-          {dictionary.hero.cta}
-          <span aria-hidden className="block h-px w-10 bg-gold" />
-        </a>
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-8">
+          <BookLink
+            contacts={contacts}
+            settings={settings}
+            bordered
+            className="text-[11px] uppercase tracking-[0.32em]"
+          />
+          <a
+            href="#portafolio"
+            className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.32em] text-gold-soft transition-colors hover:text-gold"
+          >
+            {dictionary.hero.cta}
+            <span aria-hidden className="block h-px w-10 bg-gold" />
+          </a>
+        </div>
       </div>
 
       {count > 1 ? (
