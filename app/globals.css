@@ -84,6 +84,10 @@ body {
   }
 }
 
+.hero-slide {
+  transition: opacity 1s ease;
+}
+
 .splash-overlay {
   animation: splash-overlay 2.6s ease forwards;
 }
@@ -117,5 +121,9 @@ body {
     animation: none;
     opacity: 1;
     transform: none;
+  }
+
+  .hero-slide {
+    transition: none;
   }
 }

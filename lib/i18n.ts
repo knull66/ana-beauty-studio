@@ -19,9 +19,12 @@ export const dictionaries = {
     },
     hero: {
       kicker: "Hair studio",
-      title: "Hair, in its most precise form.",
+      title: "Ana Beauty Studio",
       body: "Color, cut, and silhouette. A gallery designed so the image speaks first.",
       cta: "View work",
+      prev: "Previous slide",
+      next: "Next slide",
+      slide: "Slide",
     },
     gallery: {
       kicker: "Portfolio",
@@ -121,9 +124,12 @@ export const dictionaries = {
     },
     hero: {
       kicker: "Salón de belleza",
-      title: "El cabello, en su forma más precisa.",
+      title: "Ana Beauty Studio",
       body: "Color, corte y silueta. Una galería pensada para que la imagen hable primero.",
       cta: "Ver trabajo",
+      prev: "Diapositiva anterior",
+      next: "Diapositiva siguiente",
+      slide: "Diapositiva",
     },
     gallery: {
       kicker: "Portafolio",

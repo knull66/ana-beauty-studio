@@ -14,7 +14,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero featured={portfolio.data[0]} />
+      <Hero images={portfolio.data} />
       <Gallery images={portfolio.data} error={null} />
       <PackagesSection packages={packages.data} error={null} />
     </>
